@@ -6,7 +6,7 @@
 /*   By: mavileo <mavileo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 01:39:26 by mavileo           #+#    #+#             */
-/*   Updated: 2020/04/09 02:27:26 by mavileo          ###   ########.fr       */
+/*   Updated: 2020/04/09 02:51:24 by mavileo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,10 +168,72 @@ void	test_write()
 	printf("%-15s : %d\n\n", "write", j);
 }
 
+void	test_read()
+{
+	int i;
+	int j;
+	int fd;
+	char *s1;
+	char *s2;
+	
+	s1 = malloc(sizeof(char) * 100);
+	s2 = malloc(sizeof(char) * 100);
+
+	printf("---------------\n");
+	printf("----FT_READ----\n");
+	printf("---------------\n\n");
+
+	fd = open("main.c", O_RDONLY);
+	printf("%-15s : %s\n", "string", "25 premiers caracteres de main.c");
+	i = ft_read(fd, s1, 25);
+	write(1, "\n", 1);
+	j = read(fd, s2, 25);
+	write(1, "\n", 1);
+	printf("%-15s : %d\n", "ft_read", i);
+	printf("%-15s : %d\n\n", "read", j);
+
+	fd = open("Makefile", O_RDONLY);
+	printf("%-15s : %s\n", "string", "25 premiers caracteres de Makefile");
+	i = ft_read(fd, s1, 25);
+	write(1, "\n", 1);
+	j = read(fd, s2, 25);
+	write(1, "\n", 1);
+	printf("%-15s : %d\n", "ft_read", i);
+	printf("%-15s : %d\n\n", "read", j);
+
+	fd = open("/dev/null", O_RDONLY);
+	printf("%-15s : %s\n", "string", "/dev/null");
+	i = ft_read(fd, s1, 25);
+	write(1, "\n", 1);
+	j = read(fd, s2, 25);
+	write(1, "\n", 1);
+	printf("%-15s : %d\n", "ft_read", i);
+	printf("%-15s : %d\n\n", "read", j);
+
+	fd = open("/dev/random", O_RDONLY);
+	printf("%-15s : %s\n", "string", "100 caracteres de /dev/random");
+	i = ft_read(fd, s1, 100);
+	write(1, "\n", 1);
+	j = read(fd, s2, 100);
+	write(1, "\n", 1);
+	printf("%-15s : %d\n", "ft_read", i);
+	printf("%-15s : %d\n\n", "read", j);
+
+	printf("%-15s : %s\n", "string", "stdin 100 chars max");
+	i = ft_read(0, s1, 100);
+	write(1, "\n", 1);
+	j = read(0, s2, 100);
+	write(1, "\n", 1);
+	printf("%-15s : %d\n", "ft_read", i);
+	printf("%-15s : %d\n\n", "read", j);
+}
+
 int main()
 {
 	test_strlen();
-	test_strcpy();
 	test_strcmp();
+	test_strcpy();
+	test_strdup();
 	test_write();
+	test_read();
 }

@@ -6,7 +6,7 @@
 /*   By: mavileo <mavileo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 01:39:26 by mavileo           #+#    #+#             */
-/*   Updated: 2020/04/09 02:51:24 by mavileo          ###   ########.fr       */
+/*   Updated: 2020/04/09 03:07:33 by mavileo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,30 +100,25 @@ void	test_strcpy()
 
 void	test_strdup()
 {
-	char *s1;
-	char *s2;
-	char *s3;
-	char *s4;
-
 	printf("-----------------\n");
 	printf("----FT_STRDUP----\n");
 	printf("-----------------\n\n");
 
 	printf("%-15s : %s\n", "string", "\"Salut ca va ?\"");
-	printf("%-15s : %s\n", "ft_strcpy", ft_strcpy(s1, "Salut ca va ?"));
-	printf("%-15s : %s\n\n", "strcpy", strcpy(s1, "Salut ca va ?"));
+	printf("%-15s : %s\n", "ft_strdup", ft_strdup("Salut ca va ?"));
+	printf("%-15s : %s\n\n", "strdup", strdup("Salut ca va ?"));
 
 	printf("%-15s : %s\n", "string", "\"0123446789\"");
-	printf("%-15s : %s\n", "ft_strcpy", ft_strcpy(s2, "0123446789"));
-	printf("%-15s : %s\n\n", "strcpy", strcpy(s2, "0123446789"));
+	printf("%-15s : %s\n", "ft_strdup", ft_strdup("0123446789"));
+	printf("%-15s : %s\n\n", "strdup", strdup("0123446789"));
 
 	printf("%-15s : %s\n", "string", "\"abcdefghijklmoopqrstuvwxyz\"");
-	printf("%-15s : %s\n", "ft_strcpy", ft_strcpy(s3, "abcdefghijklmoopqrstuvwxyz"));
-	printf("%-15s : %s\n\n", "strcpy", strcpy(s3, "abcdefghijklmoopqrstuvwxyz"));
+	printf("%-15s : %s\n", "ft_strdup", ft_strdup("abcdefghijklmoopqrstuvwxyz"));
+	printf("%-15s : %s\n\n", "strdup", strdup("abcdefghijklmoopqrstuvwxyz"));
 
 	printf("%-15s : %s\n", "string", "\"\"");
-	printf("%-15s : %s\n", "ft_strcpy", ft_strcpy(s4, ""));
-	printf("%-15s : %s\n\n", "strcpy", strcpy(s4, ""));
+	printf("%-15s : %s\n", "ft_strdup", ft_strdup(""));
+	printf("%-15s : %s\n\n", "strdup", strdup(""));
 }
 
 void	test_write()
@@ -172,60 +167,35 @@ void	test_read()
 {
 	int i;
 	int j;
-	int fd;
+	int fd1;
+	int fd2;
 	char *s1;
 	char *s2;
-	
-	s1 = malloc(sizeof(char) * 100);
-	s2 = malloc(sizeof(char) * 100);
+	char *s3;
+	char *s4;
+
+	s1 = malloc(sizeof(char) * 101);
+	s2 = malloc(sizeof(char) * 101);
+	s3 = malloc(sizeof(char) * 101);
+	s4 = malloc(sizeof(char) * 101);
 
 	printf("---------------\n");
 	printf("----FT_READ----\n");
 	printf("---------------\n\n");
 
-	fd = open("main.c", O_RDONLY);
-	printf("%-15s : %s\n", "string", "25 premiers caracteres de main.c");
-	i = ft_read(fd, s1, 25);
-	write(1, "\n", 1);
-	j = read(fd, s2, 25);
-	write(1, "\n", 1);
-	printf("%-15s : %d\n", "ft_read", i);
-	printf("%-15s : %d\n\n", "read", j);
-
-	fd = open("Makefile", O_RDONLY);
-	printf("%-15s : %s\n", "string", "25 premiers caracteres de Makefile");
-	i = ft_read(fd, s1, 25);
-	write(1, "\n", 1);
-	j = read(fd, s2, 25);
-	write(1, "\n", 1);
-	printf("%-15s : %d\n", "ft_read", i);
-	printf("%-15s : %d\n\n", "read", j);
-
-	fd = open("/dev/null", O_RDONLY);
-	printf("%-15s : %s\n", "string", "/dev/null");
-	i = ft_read(fd, s1, 25);
-	write(1, "\n", 1);
-	j = read(fd, s2, 25);
-	write(1, "\n", 1);
-	printf("%-15s : %d\n", "ft_read", i);
-	printf("%-15s : %d\n\n", "read", j);
-
-	fd = open("/dev/random", O_RDONLY);
-	printf("%-15s : %s\n", "string", "100 caracteres de /dev/random");
-	i = ft_read(fd, s1, 100);
-	write(1, "\n", 1);
-	j = read(fd, s2, 100);
-	write(1, "\n", 1);
-	printf("%-15s : %d\n", "ft_read", i);
-	printf("%-15s : %d\n\n", "read", j);
+	fd1 = open("main.c", O_RDONLY);
+	fd2 = open("main.c", O_RDONLY);
+	printf("%-15s : %s\n", "string", "100 premiers caracteres de main.c");
+	i = ft_read(fd1, s1, 100);
+	j = read(fd2, s2, 100);
+	printf("%-15s : %d \"%s\"\n", "ft_read", i, s1);
+	printf("%-15s : %d \"%s\"\n\n", "read", j, s2);
 
 	printf("%-15s : %s\n", "string", "stdin 100 chars max");
-	i = ft_read(0, s1, 100);
-	write(1, "\n", 1);
-	j = read(0, s2, 100);
-	write(1, "\n", 1);
-	printf("%-15s : %d\n", "ft_read", i);
-	printf("%-15s : %d\n\n", "read", j);
+	i = ft_read(0, s3, 100);
+	j = read(0, s4, 100);
+	printf("%-15s : %d \"%s\"\n", "ft_read", i, s3);
+	printf("%-15s : %d \"%s\"\n\n", "read", j, s4);
 }
 
 int main()

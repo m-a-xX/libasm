@@ -5,6 +5,8 @@ section .text:
 	    extern ft_strcpy
 
 ft_strdup:
+    cmp rdi, 0
+    je error
     call ft_strlen
     push rdi
     mov rdi, rax
@@ -14,3 +16,6 @@ ft_strdup:
     pop rsi
     call ft_strcpy
     ret
+
+error:
+    ret;

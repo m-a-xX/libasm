@@ -6,11 +6,12 @@
 /*   By: mavileo <mavileo@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/04/09 01:39:26 by mavileo           #+#    #+#             */
-/*   Updated: 2020/04/09 03:07:33 by mavileo          ###   ########.fr       */
+/*   Updated: 2020/06/08 04:28:48 by mavileo          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdio.h>
+#include <errno.h>
 #include <string.h>
 #include <unistd.h>
 #include <fcntl.h>
@@ -104,13 +105,13 @@ void	test_strdup()
 	printf("----FT_STRDUP----\n");
 	printf("-----------------\n\n");
 
-	printf("%-15s : %s\n", "string", "\"Salut ca va ?\"");
-	printf("%-15s : %s\n", "ft_strdup", ft_strdup("Salut ca va ?"));
-	printf("%-15s : %s\n\n", "strdup", strdup("Salut ca va ?"));
+	printf("%-15s : %s\n", "string", "");
+	printf("%-15s : %s\n", "ft_strdup", ft_strdup(""));
+	printf("%-15s : %s\n\n", "strdup", strdup(""));
 
 	printf("%-15s : %s\n", "string", "\"0123446789\"");
-	printf("%-15s : %s\n", "ft_strdup", ft_strdup("0123446789"));
-	printf("%-15s : %s\n\n", "strdup", strdup("0123446789"));
+	printf("%-15s : %s\n", "ft_strdup", ft_strdup("\"0123446789\""));
+	printf("%-15s : %s\n\n", "strdup", strdup("\"0123446789\""));
 
 	printf("%-15s : %s\n", "string", "\"abcdefghijklmoopqrstuvwxyz\"");
 	printf("%-15s : %s\n", "ft_strdup", ft_strdup("abcdefghijklmoopqrstuvwxyz"));
